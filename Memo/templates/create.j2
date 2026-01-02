@@ -1,0 +1,10 @@
+{% extends "base.j2" %}
+{% block content %}
+  <h1>新しいメモを作成</h1>
+  <form action="{{ url_for('create') }}" method="post" novalidate>
+    <p>タイトル：<input type="text" name="title"></p>
+    <p>内容：<textarea name="content" cols="50" rows="5"></textarea></p>
+    <p><input type="submit" value="作成"></p>
+  </form>
+  <p><a href="{{ url_for('index') }}">戻る</a></p>
+{% endblock content %}

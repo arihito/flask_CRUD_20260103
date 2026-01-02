@@ -1,0 +1,33 @@
+{% extends "base.j2" %}
+{% block title %}課題一覧{% endblock title %}
+{% block content %}
+<a href="{{ url_for('new_task') }}" class="button">新規作成</a>
+<hr>
+<h2 class="no-complete">未完了：課題一覧</h2>
+<ul>
+  {% for task in uncompleted_tasks %}
+    <li>
+      <p>{{ task.content }}</p>
+      <form action="{{ url_for('complete_task', task_id=task.id) }}"
+            method="post"
+            novalidate>
+        <button type="submit" class="complete-button">完了</button>
+      </form>
+    </li>
+  </ul>
+{% endfor %}
+<hr>
+<h2 class="complete">完了済み：課題一覧</h2>
+<ul>
+  {% for task in completed_tasks %}
+    <li>
+      <p>{{ task.content }}</p>
+      <form action="{{ url_for('uncomplete_task', task_id=task.id) }}"
+            method="post"
+            novalidate>
+        <button type="submit" class="uncomplete-button">未完了</button>
+      </form>
+    </li>
+  </ul>
+{% endfor %}
+{% endblock content %}

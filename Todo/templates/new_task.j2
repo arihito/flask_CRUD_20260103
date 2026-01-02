@@ -1,0 +1,10 @@
+{% extends "base.j2" %}
+{% block title %}新規課題{% endblock title %}
+{% block content %}
+<h1>新規課題</h1>
+<!-- POST送信でcontentのみ送信 -->
+<form action="{{ url_for('new_task') }}" method="post" novalidate>
+    <label>課題内容<input type="text" id="content" name="content" class="text-input"></label><br>
+    <input type="submit" class="button" value="追加">
+</form>
+{% endblock content %}
