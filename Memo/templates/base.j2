@@ -8,6 +8,9 @@
     <meta name="keywords" content="">
   </head>
   <body>
+  	{% if current_user.is_authenticated %}
+      <a href="{{ url_for('logout') }}">ログアウト</a>
+    {% endif %}
     {% block content %}
     {% endblock content %}
     {% for message in get_flashed_messages() %}
