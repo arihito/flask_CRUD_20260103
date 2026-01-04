@@ -46,3 +46,14 @@ def delete(memo_id):
   db.session.commit()
   flash('変更しました')
   return redirect(url_for('memo.index'))
+
+@memo_bp.route('create_from_search', methods=['POSt'])
+@login_required
+def create_from_search():
+	title = request.form['title']
+	content = request.form['content']
+	new_memo = Memo(title=title, content=content, user_id=current_user.id)
+	db.session.add(new_memo)
+	db.session.commit()
+	flash('Wikiからデータ登録しました')
+	return redirect(url_for('memo.index'))

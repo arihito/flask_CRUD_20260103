@@ -1,0 +1,17 @@
+{% extends "base.j2" %}
+{% block content %}
+  {% if error %}
+    <h2>{{ error }}</h2>
+  {% else: %}
+    <h2>検索情報： 「{{ keyword }}」</h2>
+    <p>{{ summary }}...<a href="{{ url }}" target="_blank">もっと見る</a></p>
+  {% endif %}
+  <form action="{{ url_for('memo.create_from_search') }}" method="post" novalidate>
+		<input type="hidden" name="title" value="{{ keyword }}">
+		<input type="hidden" name="content" value="{{ summary }}">
+		<input type="submit" value="メモに追加">
+	</form>
+  <p>
+    <a href="{{ url_for('memo.index') }}">一覧ページへ戻る</a>
+  </p>
+{% endblock content %}

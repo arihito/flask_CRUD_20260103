@@ -11,6 +11,7 @@
   	{% if current_user.is_authenticated %}
       <a href="{{ url_for('auth.logout') }}">ログアウト</a>
     {% endif %}
+    <p><a href="{{ url_for('wiki.search') }}">Wikipediaの検索へ</a></p>
     {% block content %}
     {% endblock content %}
     {% for message in get_flashed_messages() %}
