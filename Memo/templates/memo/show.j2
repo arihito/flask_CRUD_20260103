@@ -1,0 +1,7 @@
+{% extends "base.j2" %}
+{% block content %}
+  <h1>メモ詳細</h1>
+  <h2>{{ show.title }}</h2>
+  <p>{{ show.content }}</p>
+  <p><a href="{{ url_for('memo.index') }}">一覧ページに戻る</a></p>
+{% endblock content %}

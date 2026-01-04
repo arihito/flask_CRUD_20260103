@@ -36,7 +36,7 @@ def update(memo_id):
     db.session.commit()
     flash('変更しました')
     return redirect(url_for('memo.index'))
-  return render_template('memo/update_form.j2', form=form, edit_id = target_data.id) # 1件分をフォームに渡す
+  return render_template('memo/update_form.j2', form=form, edit_id=target_data.id) # 1件分をフォームに渡す
 
 @memo_bp.route('/delete/<int:memo_id>')
 @login_required
@@ -57,3 +57,9 @@ def create_from_search():
 	db.session.commit()
 	flash('Wikiからデータ登録しました')
 	return redirect(url_for('memo.index'))
+
+@memo_bp.route('/show/<int:memo_id>')
+@login_required
+def show(memo_id):
+  target_data = Memo.query.filter_by(id=memo_id, user_id=current_user.id).first_or_404() # 見つからない場合は404エラー
+  return render_template('memo/show.j2', show=target_data)
