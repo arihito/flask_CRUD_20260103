@@ -11,7 +11,7 @@ class MemoForm(FlaskForm):
         ],
     )
     content = TextAreaField("内容：")
-    submit = SubmitField("返信")
+    submit = SubmitField("作成")
 
     def validate_title(self, title):
         memo = Memo.query.filter_by(title=title.data).first()
